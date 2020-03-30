@@ -6,7 +6,7 @@ int c[][];
 		c=new int[x][x];
 		for(int i=0;i<x;i++) {
 			for(int j=0;j<x;j++) {
-				c[i][j]=-1;
+				c[i][j]=5000;
 			}
 		}
 	}
