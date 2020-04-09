@@ -15,7 +15,7 @@ public class driver {
 		f.add(m);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(800, 600);
+		f.setSize(800, 600); 
 	}
 
 }

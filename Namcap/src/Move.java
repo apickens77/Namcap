@@ -73,7 +73,7 @@ public class Move extends JPanel implements ActionListener, KeyListener
 		}
 		if (code == KeyEvent.VK_RIGHT)
 		{
-			right();
+			right(); 
 		}
 	}
 	
