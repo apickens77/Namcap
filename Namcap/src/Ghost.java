@@ -18,7 +18,7 @@ public class Ghost{
 		location=l;
 	}
 	
-	public void changeN(Graphv2 g, int x, int y)
+	/*public void changeN(Graphv2 g, int x, int y)
 	{
 		g.addEdge(x, y, val);
 	}
@@ -36,6 +36,6 @@ public class Ghost{
 	public void changeW(Graphv2 g, int x, int y, int val)
 	{
 		g.addEdge(x, y, val);
-	}
+	}*/
 
 }

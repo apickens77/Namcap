@@ -3,19 +3,23 @@ import javax.swing.JFrame;
 public class driver {
 
 	public static void main(String[] args) {
-		/*Graph b=new Graph();
-		b.print();
-		b.addEdge(3, 1);
-		b.print();
-		//b.removeEdge(3, 1);
-		b.print();*/
+		Graphv2 g = new Graphv2(25);
+		g.addEdge(1, 3, 5);
+		g.addEdge(5, 22, 100);
 		
-		JFrame f = new JFrame();
+		Board b = new Board(100, 25);
+		
+		
+		/*JFrame f = new JFrame();
 		Move m = new Move();
 		f.add(m);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(800, 600); 
+		f.setSize(800, 600); */
+		
+		 Algorithm a = new Algorithm();
+		 
+		 a.dijkstra(b.G.c, 0);
 	}
 
 }
