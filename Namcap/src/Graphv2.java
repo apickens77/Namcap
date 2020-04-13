@@ -15,6 +15,7 @@ int c[][];
 		c[from][to]=weight;
 		c[to][from]=weight;
 	}
+	
 	public boolean hasEdge(int from, int to) {
 		if(c[from][to]==5000) {
 			return false;
