@@ -28,17 +28,24 @@ public class Board {
 		for(int i=0; i<width; i++) // Have to initialize each square, o.w. each element of tiles[][] is null
 		{
 			for(int j=0; j<height; j++)
+			{
 				tiles[i][j] = new Square(i, j);
+			}
 		}
 		
 		// Link some tiles for the demo board
 		demoLinks();
 		
-		this.pacman = new Pacman(this.tiles[5][0]);
-		this.aiGhost0 = new Ghost(Color.RED, this.tiles[10][5]);
+		// Test pacman's dot-finding algorithm
+		tiles[6][2].hasDot = true;
+		
+		// Initialize pacman and aiGhost0's locations
+		this.pacman = new Pacman(this.tiles[4][1]);
+		this.aiGhost0 = new Ghost(Color.RED, this.tiles[5][3]);
 	}
 	
-	public List<Square> shortestPathGtP(Ghost g) // Breadth-first search to find Square with pacman
+	// Breadth-first search to find Square with pacman
+	public List<Square> shortestPathGtP(Ghost g)
 	{
 		// Modified version of the discussion found at 
 		// https://stackoverflow.com/questions/41789767/finding-the-shortest-path-nodes-with-breadth-first-search
@@ -76,11 +83,12 @@ public class Board {
 			}
 			queue.poll();
 		}
+		
 		Collections.reverse(shortestPath);
 		System.out.println(shortestPath.toString());
+		System.out.println("Distance: " + (shortestPath.size()-1));
 		
-		return shortestPath;
-		
+		return shortestPath;	
 	}
 	
 	private void linkSquares(int xPos, int yPos, char direction)
@@ -106,7 +114,8 @@ public class Board {
 		}
 	}
 	
-	private void demoLinks()
+	// OG links that were too boring
+	private void demoLinksV0()
 	{
 		// Link a line across the top and bottom
 		for(int i=0; i<this.width-1; i++)
@@ -123,10 +132,57 @@ public class Board {
 		}	
 	}
 	
+	// New and improved Chad links
+	private void demoLinks()
+	{
+		// BEWARE: not pretty, not sure if there's a better way to do this for a board with twists and turns
+		for(int i=0; i<this.height-1; i++)
+		{	
+			linkSquares(0, i, 's');
+			linkSquares(3, i, 's');
+			linkSquares(4, i, 's');
+		}	
+		linkSquares(0, 0, 'e');
+		linkSquares(1, 0, 'e');
+		linkSquares(2, 0, 'e');
+		linkSquares(4, 0, 'e');
+		linkSquares(5, 0, 'e');
+		linkSquares(1, 1, 'e');
+		linkSquares(2, 1, 'e');
+		linkSquares(3, 1, 'e');
+		linkSquares(5, 1, 'e');
+		linkSquares(2, 2, 'e');
+		linkSquares(5, 2, 'e');
+		linkSquares(0, 3, 'e');
+		linkSquares(1, 3, 'e');
+		linkSquares(4, 3, 'e');
+		for(int i=0; i<this.width-1; i++)
+			linkSquares(i, 4, 'e');
+		
+		linkSquares(1, 1, 's');
+		linkSquares(1, 2, 's');
+		linkSquares(2, 2, 's');
+		linkSquares(5, 1, 's');
+		linkSquares(5, 2, 's');
+		linkSquares(6, 0, 's');
+		linkSquares(6, 2, 's');
+		linkSquares(6, 3, 's');
+		
+		/*		For a 7x5 board, looks like this:
+		 * 		 ______________
+		 * 		|  ___  |  __  |
+		 * 		| |  _    |  __|
+		 * 		| | |   | |    |
+		 * 		| ____| |  __| |
+		 * 		|______________|
+		 */
+	}
+	
 	public String toString()
 	{
 		String result = "Width of board: " + tiles.length + "\nHeight of board: " + tiles[0].length;
 		result += "\n" + this.pacman.toString();
+		result += "\n" + this.aiGhost0.toString() + "\n";
 		return result;
 	}
 }

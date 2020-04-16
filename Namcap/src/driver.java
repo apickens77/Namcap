@@ -2,15 +2,17 @@
 public class driver {
 	public static void main(String[] args)
 	{
-		Board board = new Board(11, 6);
+		Board board = new Board(7, 5);
 		System.out.println(board);
 		System.out.println();
-		System.out.println(board.tiles[5][0]);
-		System.out.println(board.tiles[10][5]);
 		
-		
+		// Comment these in or out for testing
 		board.shortestPathGtP(board.aiGhost0);
-		System.out.println("done");
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		board.pacman.locateNearestDot();
+
 		
 	}
 }
