@@ -1,41 +1,28 @@
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Ghost{
-	Color c;
-	int location;
+	Color color;
+	Square location;
 	
-	Square sN;
-	Square sS;
-	Square sE;
-	Square sW;
-	
-	public Ghost (Color c, int l) {
-		this.c=c;
-		location=l;
+	Ghost(Color c, Square l)
+	{
+		this.color = c;
+		this.location = l;
+		this.location.hasGhost = true;
+		
+		this.location.ghostDanger = true;
+		for(int i=0; i<4; i++)
+		{
+			Square neighborI = location.neighbors[i];
+			if(neighborI != null)
+				neighborI.ghostDanger = true;
+		}
 	}
 	
-	/*public void changeN(Graphv2 g, int x, int y)
-	{
-		g.addEdge(x, y, val);
-	}
+	// TODO: Movement functions
 	
-	public void changeS(Graphv2 g, int x, int y)
+	public String toString()
 	{
-		g.addEdge(x, y, val);
+		return "Location of Ghost: (" + this.location.xPos + ", " + this.location.yPos + ")";
 	}
-	
-	public void changeE(Graphv2 g, int x, int y, int val)
-	{
-		g.addEdge(x, y, val);
-	}
-	
-	public void changeW(Graphv2 g, int x, int y, int val)
-	{
-		g.addEdge(x, y, val);
-	}*/
-
 }
