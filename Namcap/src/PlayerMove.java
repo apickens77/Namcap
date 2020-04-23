@@ -1,3 +1,5 @@
+//https://stackoverflow.com/questions/11367324/how-do-i-scale-a-bufferedimage
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,34 +9,49 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Move extends JPanel implements ActionListener, KeyListener
+public class PlayerMove extends JPanel implements ActionListener, KeyListener
 {
 	Timer t = new Timer(5, this);
 	int x = 0, y = 0, velx = 0, vely;
 	BufferedImage image;
 	
-	public Move()
+	public PlayerMove()
 	{
 		t.start();
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		
-		BufferedImage img = null;
-		JFileChooser fc = new JFileChooser();
-		//fc.setCurrentDirectory(new);
-		int result = fc.showOpenDialog(this);
-		File file = fc.getSelectedFile();
 		
 		try {
-			img = ImageIO.read(file);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("FUCK");
-		}	
-		System.out.println("Selected file: " + file.getAbsolutePath());
-		image = img;
+			image = ImageIO.read(new File("C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\ghost.jpg"));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		image = getScaledImage(image, 40, 40);
 		
+		/*Timer t = new Timer(5, new ActionListener() 
+		{
+			@Overide
+			public void actionPerformed(ActionEvent e)
+			{
+				x += velx;
+				y += vely;
+				repaint();
+			}
+		});*/
+		t.start();
+		
+	}
+	
+	private BufferedImage getScaledImage(Image srcImg, int w, int h)
+	{
+	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
+	    Graphics2D g2 = resizedImg.createGraphics();
+	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+	    g2.drawImage(srcImg, 0, 0, w, h, null);
+	    g2.dispose();
+	    return resizedImg;
 	}
 	
 	public void paintComponent(Graphics g)
@@ -57,9 +74,14 @@ public class Move extends JPanel implements ActionListener, KeyListener
 	
 	public void up()
 	{
-		vely = -1;
-		velx = 0;
-		//t.wait(250);
+		if (y >= 0)
+		{
+			vely = -1;
+			velx = 0;
+		}
+		else
+			stop();
+		
 	}
 	
 	public void down()
@@ -97,10 +119,7 @@ public class Move extends JPanel implements ActionListener, KeyListener
 		}
 		if (code == KeyEvent.VK_DOWN)
 		{
-			double start = y;
-			while (start+50 != y)
-				down();
-			stop();
+			down();
 		}
 		if (code == KeyEvent.VK_LEFT)
 		{
@@ -115,7 +134,6 @@ public class Move extends JPanel implements ActionListener, KeyListener
 	public void keyTyped(KeyEvent e) {}
 	public void keyReleased(KeyEvent e) 
 	{
-		//stop();
-		//System.out.println("x: " + x + " y: " + y);
+		stop();
 	}
 }
