@@ -15,9 +15,11 @@ public class PlayerMove extends JPanel implements ActionListener, KeyListener
 	int x = 0, y = 0, velx = 0, vely;
 	BufferedImage image;
 	
+	int upLim, downLim, leftLim, rightLim;
+	
 	public PlayerMove()
 	{
-		t.start();
+		//t.start();
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
@@ -61,6 +63,7 @@ public class PlayerMove extends JPanel implements ActionListener, KeyListener
 		
 		g2.drawImage(image, x, y, this);
 		
+		//upLim = y+20;
 		
 		//g2.fill(new Ellipse2D.Double(x, y, 40, 40));
 	}

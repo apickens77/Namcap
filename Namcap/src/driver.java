@@ -26,21 +26,7 @@ public class driver extends JPanel {
 		board.pacman.locateNearestDot();*/
 
 		
-		JFrame f = new JFrame();
-		PlayerMove m = new PlayerMove();
-		f.add(m);
-		
-		PacMove pac = new PacMove();
-		f.add(pac);
-		
-		f.setVisible(true);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(800, 600);
-		
-		pac.moveHoriz(100);
-		
-		//m.x = 10;
-		//m.moveVert(-20);
+		Level l = new Level();
 		
 	}
 }

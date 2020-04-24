@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class PacMove
+public class Player
 {
 	private int lives;
 	private int xAxis;
@@ -9,10 +9,9 @@ public class PacMove
 	private String imagePath;
 	private boolean isAlive;
 	
-	private int xDest;
-	private int yDest;
 	
-	public PacMove(int lives, int xAxis, int yAxis, String imagePath, boolean isAlive) 
+	
+	public Player(int lives, int xAxis, int yAxis, String imagePath, boolean isAlive) 
 	{
 		super();
 		this.lives = lives;
@@ -60,29 +59,7 @@ public class PacMove
 		this.isAlive = isAlive;
 	}
 	
-	
-	
-	public int getxDest() {
-		return xDest;
-	}
-
-
-	public int getyDest() {
-		return yDest;
-	}
-
-
-	public void setxDest(int xDest) {
-		this.xDest = xDest;
-	}
-
-
-	public void setyDest(int yDest) {
-		this.yDest = yDest;
-	}
-
-
-	public void drawPacman(Graphics g)
+	public void drawPlayer(Graphics g)
 	{
 		ImageIcon img = new ImageIcon(imagePath);
 		g.drawImage(img.getImage(), xAxis, yAxis, null);
