@@ -15,11 +15,12 @@ public class driver extends JPanel {
 	{
 		
 		Board board = new Board(10, 11);
+		System.out.println("Tile 1,1: " + board.tiles[1][1]);
 		System.out.println(board);
 		System.out.println();
 		
 		// Comment these in or out for testing
-		board.shortestPathGtP(board.aiGhost0);
+		//board.shortestPathGtP(board.aiGhost0);
 		System.out.println();
 		System.out.println();
 		System.out.println();
@@ -27,6 +28,7 @@ public class driver extends JPanel {
 
 		
 		Level l = new Level(board);
+		System.out.println(board.tiles[0][0].neighbors[3]);
 		
 	}
 }

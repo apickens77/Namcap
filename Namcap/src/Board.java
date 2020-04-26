@@ -32,7 +32,7 @@ public class Board {
 				tiles[i][j] = new Square(i, j);
 				tiles[i][j].hasDot = true;
 				tiles[i][j].xPos = i*40+40;
-				tiles[i][j].yPos = i*40+40;
+				tiles[i][j].yPos = j*40+40;
 			}
 		}
 		
@@ -59,7 +59,7 @@ public class Board {
 		
 		// Initialize pacman and aiGhost0's locations
 		this.pacman = new Pacman(this.tiles[0][0]);
-		this.aiGhost0 = new Ghost(Color.RED, this.tiles[5][5]);
+		this.aiGhost0 = new Ghost(Color.RED, this.tiles[9][0]);
 	}
 	
 	// Breadth-first search to find Square with pacman
@@ -154,13 +154,13 @@ public class Board {
 	private void demoLinks()
 	{
 		linkSquares(0, 0, 'e');
-		linkSquares(1, 1, 'e');
-		linkSquares(2, 2, 'e');
-		linkSquares(3, 3, 'e');
-		linkSquares(5, 5, 'e');
-		linkSquares(6, 6, 'e');
-		linkSquares(7, 7, 'e');
-		linkSquares(8, 8, 'e');
+		linkSquares(1, 0, 'e');
+		linkSquares(2, 0, 'e');
+		linkSquares(3, 0, 'e');
+		linkSquares(5, 0, 'e');
+		linkSquares(6, 0, 'e');
+		linkSquares(7, 0, 'e');
+		linkSquares(8, 0, 'e');
 		
 		for (int i = 0; i < 9; i++)
 		{
@@ -169,7 +169,7 @@ public class Board {
 		
 		for (int i = 0; i < 2; i++)
 		{
-			linkSquares(i, 4, 'e');
+			linkSquares(i, 3, 'e');
 			linkSquares(i+7, 3, 'e');
 		}
 		

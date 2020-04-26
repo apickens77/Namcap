@@ -6,19 +6,21 @@ public class Player
 	private int lives;
 	private int xAxis;
 	private int yAxis;
+	
+	private int xDest;
+	private int yDest;
+	
 	private String imagePath;
-	private boolean isAlive;
 	
 	
 	
-	public Player(int lives, int xAxis, int yAxis, String imagePath, boolean isAlive) 
+	public Player(int lives, int xAxis, int yAxis, String imagePath) 
 	{
 		super();
 		this.lives = lives;
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
 		this.imagePath = imagePath;
-		this.isAlive = isAlive;
 	}
 	
 	
@@ -34,9 +36,7 @@ public class Player
 	public String getImagePath() {
 		return imagePath;
 	}
-	public boolean isAlive() {
-		return isAlive;
-	}
+
 	public void setLives(int lives) {
 		this.lives = lives;
 	}
@@ -55,13 +55,32 @@ public class Player
 		else
 			this.imagePath = imagePath;
 	}
-	public void setAlive(boolean isAlive) {
-		this.isAlive = isAlive;
-	}
-	
+
 	public void drawPlayer(Graphics g)
 	{
 		ImageIcon img = new ImageIcon(imagePath);
 		g.drawImage(img.getImage(), xAxis, yAxis, null);
 	}
+
+
+	public int getxDest() {
+		return xDest;
+	}
+
+
+	public int getyDest() {
+		return yDest;
+	}
+
+
+	public void setxDest(int xDest) {
+		this.xDest = xDest;
+	}
+
+
+	public void setyDest(int yDest) {
+		this.yDest = yDest;
+	}
+	
+	
 }

@@ -19,6 +19,19 @@ public class Ghost{
 		}
 	}
 	
+	public void setLocation(Square l)
+	{
+		this.location = l;
+		
+		this.location.ghostDanger = true;
+		for(int i=0; i<4; i++)
+		{
+			Square neighborI = location.neighbors[i];
+			if(neighborI != null)
+				neighborI.ghostDanger = true;
+		}
+	}
+	
 	// TODO: Movement functions
 	
 	public String toString()
