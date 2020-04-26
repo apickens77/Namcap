@@ -40,16 +40,25 @@ public class Board {
 		
 		
 		tiles[1][1].hasDot = false;
-		tiles[1][3].hasDot = false;
-		tiles[1][6].hasDot = false;
-		tiles[1][8].hasDot = false;
+		tiles[3][1].hasDot = false;
+		tiles[6][1].hasDot = false;
+		tiles[8][1].hasDot = false;
 		
-		tiles[5][0].hasDot = false;
-		tiles[5][1].hasDot = false;
-		tiles[5][4].hasDot = false;
+		tiles[0][5].hasDot = false;
+		tiles[1][5].hasDot = false;
+		tiles[4][5].hasDot = false;
 		tiles[5][5].hasDot = false;
-		tiles[5][8].hasDot = false;
-		tiles[5][9].hasDot = false;
+		tiles[8][5].hasDot = false;
+		tiles[9][5].hasDot = false;
+		
+		tiles[0][4].hasDot = false;
+		tiles[0][6].hasDot = false;
+		tiles[1][4].hasDot = false;
+		tiles[1][6].hasDot = false;
+		tiles[8][4].hasDot = false;
+		tiles[8][6].hasDot = false;
+		tiles[9][4].hasDot = false;
+		tiles[9][6].hasDot = false;
 		
 		// Link some tiles for the demo board
 		demoLinks();

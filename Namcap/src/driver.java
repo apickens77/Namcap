@@ -28,7 +28,7 @@ public class driver extends JPanel {
 
 		
 		Level l = new Level(board);
-		System.out.println(board.tiles[0][0].neighbors[3]);
+		System.out.println(board.tiles[9][1].neighbors[3]);
 		
 	}
 }
