@@ -59,8 +59,8 @@ public class Pacman {
 		}
 		
 		Collections.reverse(shortestPath);
-		System.out.println(shortestPath.toString());
-		System.out.println("Distance: " + (shortestPath.size()-1));
+		//System.out.println(shortestPath.toString());
+		//System.out.println("Distance: " + (shortestPath.size()-1));
 		
 		return shortestPath;
 	}

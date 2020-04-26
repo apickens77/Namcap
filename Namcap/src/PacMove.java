@@ -9,8 +9,8 @@ public class PacMove
 	private String imagePath;
 	private boolean isAlive;
 	
-	private int xDest;
-	private int yDest;
+	private int xDest = xAxis;
+	private int yDest = yAxis;
 	
 	public PacMove(int lives, int xAxis, int yAxis, String imagePath, boolean isAlive) 
 	{

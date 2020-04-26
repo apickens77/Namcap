@@ -30,8 +30,26 @@ public class Board {
 			for(int j=0; j<height; j++)
 			{
 				tiles[i][j] = new Square(i, j);
+				tiles[i][j].hasDot = true;
+				tiles[i][j].xPos = i*40+40;
+				tiles[i][j].yPos = i*40+40;
 			}
 		}
+		
+		tiles[0][0].hasDot = false;
+		
+		
+		tiles[1][1].hasDot = false;
+		tiles[1][3].hasDot = false;
+		tiles[1][6].hasDot = false;
+		tiles[1][8].hasDot = false;
+		
+		tiles[5][0].hasDot = false;
+		tiles[5][1].hasDot = false;
+		tiles[5][4].hasDot = false;
+		tiles[5][5].hasDot = false;
+		tiles[5][8].hasDot = false;
+		tiles[5][9].hasDot = false;
 		
 		// Link some tiles for the demo board
 		demoLinks();
@@ -40,8 +58,8 @@ public class Board {
 		tiles[6][2].hasDot = true;
 		
 		// Initialize pacman and aiGhost0's locations
-		this.pacman = new Pacman(this.tiles[4][1]);
-		this.aiGhost0 = new Ghost(Color.RED, this.tiles[5][3]);
+		this.pacman = new Pacman(this.tiles[0][0]);
+		this.aiGhost0 = new Ghost(Color.RED, this.tiles[5][5]);
 	}
 	
 	// Breadth-first search to find Square with pacman
@@ -135,47 +153,123 @@ public class Board {
 	// New and improved Chad links
 	private void demoLinks()
 	{
-		// BEWARE: not pretty, not sure if there's a better way to do this for a board with twists and turns
-		for(int i=0; i<this.height-1; i++)
-		{	
-			linkSquares(0, i, 's');
-			linkSquares(3, i, 's');
-			linkSquares(4, i, 's');
-		}	
 		linkSquares(0, 0, 'e');
-		linkSquares(1, 0, 'e');
-		linkSquares(2, 0, 'e');
-		linkSquares(4, 0, 'e');
-		linkSquares(5, 0, 'e');
 		linkSquares(1, 1, 'e');
-		linkSquares(2, 1, 'e');
-		linkSquares(3, 1, 'e');
-		linkSquares(5, 1, 'e');
 		linkSquares(2, 2, 'e');
-		linkSquares(5, 2, 'e');
-		linkSquares(0, 3, 'e');
-		linkSquares(1, 3, 'e');
-		linkSquares(4, 3, 'e');
-		for(int i=0; i<this.width-1; i++)
+		linkSquares(3, 3, 'e');
+		linkSquares(5, 5, 'e');
+		linkSquares(6, 6, 'e');
+		linkSquares(7, 7, 'e');
+		linkSquares(8, 8, 'e');
+		
+		for (int i = 0; i < 9; i++)
+		{
+			linkSquares(i, 2, 'e');
+		}
+		
+		for (int i = 0; i < 2; i++)
+		{
 			linkSquares(i, 4, 'e');
+			linkSquares(i+7, 3, 'e');
+		}
 		
-		linkSquares(1, 1, 's');
-		linkSquares(1, 2, 's');
-		linkSquares(2, 2, 's');
+		linkSquares(3, 3, 'e');
+		linkSquares(5, 3, 'e');
+		
+		linkSquares(3, 4, 'e');
+		linkSquares(4, 4, 'e');
+		linkSquares(5, 4, 'e');
+	
+		linkSquares(0, 5, 'e');
+		linkSquares(1, 5, 'e');
+		linkSquares(2, 5, 'e');
+		linkSquares(6, 5, 'e');
+		linkSquares(7, 5, 'e');
+		linkSquares(8, 5, 'e');
+		
+		linkSquares(3, 6, 'e');
+		linkSquares(4, 6, 'e');
+		linkSquares(5, 6, 'e');
+		
+		linkSquares(0, 7, 'e');
+		linkSquares(1, 7, 'e');
+		linkSquares(2, 7, 'e');
+		linkSquares(3, 7, 'e');
+		linkSquares(5, 7, 'e');
+		linkSquares(6, 7, 'e');
+		linkSquares(7, 7, 'e');
+		linkSquares(8, 7, 'e');
+		
+		linkSquares(0, 8, 'e');
+		linkSquares(2, 8, 'e');
+		linkSquares(3, 8, 'e');
+		linkSquares(4, 8, 'e');
+		linkSquares(5, 8, 'e');
+		linkSquares(6, 8, 'e');
+		linkSquares(8, 8, 'e');
+		
+		linkSquares(0, 9, 'e');
+		linkSquares(1, 9, 'e');
+		linkSquares(3, 9, 'e');
+		linkSquares(5, 9, 'e');
+		linkSquares(7, 9, 'e');
+		linkSquares(8, 9, 'e');
+		
+		for (int i = 0; i < 9; i++)
+		{
+			linkSquares(i, 10, 'e');
+		}
+		
+		linkSquares(0, 0, 's');
+		linkSquares(0, 1, 's');
+		linkSquares(0, 2, 's');
+		linkSquares(0, 7, 's');
+		linkSquares(0, 9, 's');
+		
+		linkSquares(1, 8, 's');
+		
+		for (int i = 0; i < 9; i++)
+		{
+			linkSquares(2, i, 's');	
+		}
+		
+		linkSquares(3, 2, 's');
+		linkSquares(3, 4, 's');
+		linkSquares(3, 5, 's');
+		linkSquares(3, 6, 's');
+		linkSquares(3, 8, 's');
+		
+		linkSquares(4, 0, 's');
+		linkSquares(4, 1, 's');
+		linkSquares(4, 3, 's');
+		linkSquares(4, 7, 's');
+		linkSquares(4, 9, 's');
+		
+		linkSquares(5, 0, 's');
 		linkSquares(5, 1, 's');
-		linkSquares(5, 2, 's');
-		linkSquares(6, 0, 's');
-		linkSquares(6, 2, 's');
-		linkSquares(6, 3, 's');
+		linkSquares(5, 3, 's');
+		linkSquares(5, 7, 's');
+		linkSquares(5, 9, 's');
 		
-		/*		For a 7x5 board, looks like this:
-		 * 		 ______________
-		 * 		|  ___  |  __  |
-		 * 		| |  _    |  __|
-		 * 		| | |   | |    |
-		 * 		| ____| |  __| |
-		 * 		|______________|
-		 */
+		linkSquares(6, 2, 's');
+		linkSquares(6, 4, 's');
+		linkSquares(6, 5, 's');
+		linkSquares(6, 6, 's');
+		linkSquares(6, 8, 's');
+		
+		for (int i = 0; i < 9; i++)
+		{
+			linkSquares(7, i, 's');	
+		}
+		
+		linkSquares(8, 8, 's');
+		
+		linkSquares(9, 0, 's');
+		linkSquares(9, 1, 's');
+		linkSquares(9, 2, 's');
+		linkSquares(9, 7, 's');
+		linkSquares(9, 9, 's');
+	
 	}
 	
 	public String toString()

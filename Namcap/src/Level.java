@@ -10,20 +10,31 @@ public class Level extends JPanel implements KeyListener, ActionListener
 {
 	Timer t = new Timer(5, this);
 	private JFrame window = new JFrame();
-	private ImageIcon bg = new ImageIcon("C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\background.jpg");
+	private ImageIcon bg = new ImageIcon("C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\map grid.png");
 	private Player player = new Player(3, 10, 10, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\ghost.jpg", true);
-	private PacMove pacman = new PacMove(3, 10, 10, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\ghost.jpg", true);
-	private int speed = 10;
+	private PacMove pacman; //= new PacMove(3, 40, 40,, true);
+	private int speed = 5;
 	private int xSpeed = speed;
 	private int ySpeed = speed;
 	
-	public Level()
+	private Board boardPac; 
+	
+	public Level(Board b)
 	{
+		pacman = new PacMove(3, b.pacman.location.xPos, b.pacman.location.yPos, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\pacman.gif", true);
+		pacman.setxDest(pacman.getxAxis());
+		pacman.setyDest(pacman.getyAxis());
+		
 		this.setFocusable(true);
 		this.addKeyListener(this);
+		window.setTitle("Nam-cap/Reverse Pac-man");
 		window.add(this);
 		
-		window.setSize(512,512);
+		boardPac = b;
+		
+		System.out.println(bg.getIconWidth() + " " + bg.getIconHeight());
+		
+		window.setSize(new Dimension(498, 567));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 		t.start();
@@ -76,6 +87,7 @@ public class Level extends JPanel implements KeyListener, ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		if (pacman.getxAxis() == pacman.getxDest())
 			xSpeed = 0;
 		else if(pacman.getxAxis() < pacman.getxDest())
@@ -91,10 +103,24 @@ public class Level extends JPanel implements KeyListener, ActionListener
 			ySpeed = -speed;
 		
 		
-			
-		pacman.setxAxis(pacman.getxAxis()+xSpeed);
-		pacman.setyAxis(pacman.getyAxis()-ySpeed);
+		
+		
+		
+
 		this.repaint();
+		System.out.println(pacman.getxAxis() + " " + pacman.getyAxis());
+		System.out.println(pacman.getxDest() + " " + pacman.getyDest());
+		
+		if (pacman.getxAxis() == pacman.getxDest() & pacman.getyAxis() == pacman.getyDest())
+		{
+			Square temp = boardPac.pacman.locateNearestDot().get(1);
+			pacman.setxDest(temp.xPos);
+			pacman.setyDest(temp.yPos);
+			boardPac.pacman.location = temp;
+		}
+		
+		pacman.setxAxis(pacman.getxAxis()+xSpeed);
+		pacman.setyAxis(pacman.getyAxis()+ySpeed);
 		
 	}
 }

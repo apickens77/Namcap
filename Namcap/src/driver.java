@@ -13,8 +13,8 @@ import javax.swing.border.TitledBorder;
 public class driver extends JPanel {
 	public static void main(String[] args)
 	{
-		/*
-		Board board = new Board(7, 5);
+		
+		Board board = new Board(10, 11);
 		System.out.println(board);
 		System.out.println();
 		
@@ -23,10 +23,10 @@ public class driver extends JPanel {
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		board.pacman.locateNearestDot();*/
+		//board.pacman.locateNearestDot();
 
 		
-		Level l = new Level();
+		Level l = new Level(board);
 		
 	}
 }
