@@ -36,7 +36,7 @@ public class Board {
 			}
 		}
 		
-		tiles[0][0].hasDot = false;
+		tiles[4][4].hasDot = false;
 		
 		
 		tiles[1][1].hasDot = false;
@@ -67,8 +67,8 @@ public class Board {
 		tiles[6][2].hasDot = true;
 		
 		// Initialize pacman and aiGhost0's locations
-		this.pacman = new Pacman(this.tiles[0][0]);
-		this.aiGhost0 = new Ghost(Color.RED, this.tiles[9][0]);
+		this.pacman = new Pacman(this.tiles[4][4]);
+		this.aiGhost0 = new Ghost(Color.RED, this.tiles[9][10]);
 	}
 	
 	// Breadth-first search to find Square with pacman

@@ -3,7 +3,6 @@ import javax.swing.*;
 
 public class Player
 {
-	private int lives;
 	private int xAxis;
 	private int yAxis;
 	
@@ -14,19 +13,16 @@ public class Player
 	
 	
 	
-	public Player(int lives, int xAxis, int yAxis, String imagePath) 
+	public Player( int xAxis, int yAxis, String imagePath) 
 	{
 		super();
-		this.lives = lives;
+		//this.lives = lives;
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
 		this.imagePath = imagePath;
 	}
 	
 	
-	public int getLives() {
-		return lives;
-	}
 	public int getxAxis() {
 		return xAxis;
 	}
@@ -35,10 +31,6 @@ public class Player
 	}
 	public String getImagePath() {
 		return imagePath;
-	}
-
-	public void setLives(int lives) {
-		this.lives = lives;
 	}
 	public void setxAxis(int xAxis) {
 		this.xAxis = xAxis;
