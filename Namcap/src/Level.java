@@ -8,24 +8,24 @@ import javax.swing.*;
 
 public class Level extends JPanel implements KeyListener, ActionListener
 {
-	Timer t = new Timer(5, this);
+	Timer t = new Timer(10, this);
 	private JFrame window = new JFrame();
 	private ImageIcon bg = new ImageIcon("C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\map grid.png");
 	private ImageIcon dot = new ImageIcon("C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\dot.gif");
 	private Player player = new Player(3, 400, 40, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\ghost.jpg");
 	private PacMove pacman = new PacMove(3, 40, 40, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\pacman.gif", true);
-	private int speed = 20;
+	private int speed = 2;
+	private int playerSpeed = 1;
 	private int xSpeed = speed;
 	private int ySpeed = speed;
-	private int playerXSpeed = speed;
-	private int playerYSpeed = speed;
+	private int playerXSpeed = playerSpeed;
+	private int playerYSpeed = playerSpeed;
 	private Square tempPlayer;
 	
 	private Board boardPac; 
 	
 	public Level(Board b)
 	{
-		//pacman = new PacMove(3, b.pacman.location.xPos, b.pacman.location.yPos, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\pacman.gif", true);
 		pacman.setxDest(pacman.getxAxis());
 		pacman.setyDest(pacman.getyAxis());
 		
@@ -41,8 +41,6 @@ public class Level extends JPanel implements KeyListener, ActionListener
 		boardPac = b;
 		tempPlayer = boardPac.aiGhost0.location;
 		
-		//System.out.println(bg.getIconWidth() + " " + bg.getIconHeight());
-		
 		window.setSize(new Dimension(498, 567));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
@@ -55,6 +53,8 @@ public class Level extends JPanel implements KeyListener, ActionListener
 		player.drawPlayer(g);
 		pacman.drawPacman(g);
 		
+		
+		
 		for (int i = 0; i < boardPac.tiles.length; i++)
 		{
 			for (int j = 0; j < boardPac.tiles[i].length; j++)
@@ -65,32 +65,28 @@ public class Level extends JPanel implements KeyListener, ActionListener
 				}
 			}
 		}
+		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		System.out.println("Current Square: " + boardPac.aiGhost0.location);
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
-			//System.out.println("ASDFAFDASDFADFA");
 			if (player.getxAxis() == player.getxDest() & player.getyAxis() == player.getyDest())
-			{
-				
-				
+			{		
 				tempPlayer = boardPac.aiGhost0.location.neighbors[1];
-				
-				
+							
 				if (tempPlayer != null)
 				{
-					System.out.println("ASDFAFDASDFADFA");
 					player.setxDest(tempPlayer.xPos);
 				
 					for (int i = 0; i < 4; i++)
-						boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
-					
-					
-					//boardPac.aiGhost0.setLocation(boardPac.aiGhost0.location.neighbors[1]);
+					{
+						if (boardPac.aiGhost0.location.neighbors[i] != null)
+							boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
+					}
 				}
 			}
 		}
@@ -105,10 +101,11 @@ public class Level extends JPanel implements KeyListener, ActionListener
 					player.setxDest(tempPlayer.xPos);
 				
 					for (int i = 0; i < 4; i++)
-						boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
-					
-					System.out.println("ASDFAFDASDFADFA");
-					//boardPac.aiGhost0.setLocation(temp);
+					{
+						if (boardPac.aiGhost0.location.neighbors[i] != null)
+							boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
+						
+					}
 				}
 			}
 		}
@@ -123,9 +120,11 @@ public class Level extends JPanel implements KeyListener, ActionListener
 					player.setyDest(tempPlayer.yPos);
 				
 					for (int i = 0; i < 4; i++)
-						boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
-					
-					//boardPac.aiGhost0.setLocation(boardPac.aiGhost0.location.neighbors[0]);
+					{
+						if (boardPac.aiGhost0.location.neighbors[i] != null)
+							boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
+						
+					}
 				}
 			}
 		}
@@ -140,13 +139,14 @@ public class Level extends JPanel implements KeyListener, ActionListener
 					player.setyDest(tempPlayer.yPos);
 				
 					for (int i = 0; i < 4; i++)
-						boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
-					
-					//boardPac.aiGhost0.setLocation(boardPac.aiGhost0.location.neighbors[2]);
+					{
+						if (boardPac.aiGhost0.location.neighbors[i] != null)
+							boardPac.aiGhost0.location.neighbors[i].ghostDanger = false;
+						
+					}
 				}
 			}
 		}
-		
 	}
 
 	@Override
@@ -196,11 +196,11 @@ public class Level extends JPanel implements KeyListener, ActionListener
 		if (pacman.getxAxis() == pacman.getxDest() & pacman.getyAxis() == pacman.getyDest())
 		{
 			try {
-			Square temp = boardPac.pacman.locateNearestDot().get(1);			
-			pacman.setxDest(temp.xPos);
-			pacman.setyDest(temp.yPos);
-			boardPac.pacman.location = temp;
-			boardPac.pacman.location.hasDot = false;
+				Square temp = boardPac.pacman.locateNearestDot().get(1);			
+				pacman.setxDest(temp.xPos);
+				pacman.setyDest(temp.yPos);
+				boardPac.pacman.location = temp;
+				boardPac.pacman.location.hasDot = false;
 			} catch (Exception e1) {
 				
 			}
@@ -210,18 +210,26 @@ public class Level extends JPanel implements KeyListener, ActionListener
 		{
 			if (player.getxAxis() == player.getxDest() & player.getyAxis() == player.getyDest())
 			{
-				boardPac.aiGhost0.setLocation(tempPlayer);
+				if (tempPlayer != null)
+					boardPac.aiGhost0.setLocation(tempPlayer);
 			}
 		}
 		
 		if (boardPac.aiGhost0.location == boardPac.pacman.location)
 		{
-			JFrame endFrame = new JFrame();
-			endFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			System.exit(0);
-			JOptionPane.showMessageDialog(endFrame, "You Win!");
+			int result = JOptionPane.showConfirmDialog(window, "You Win!");
+			if (result == JOptionPane.OK_OPTION) 
+				System.exit(0);
 			
 		}
+		
+		if (!boardPac.dotsRemain())
+		{
+			int result = JOptionPane.showConfirmDialog(window, "Pac-man Wins!");
+			if (result == JOptionPane.OK_OPTION) 
+				System.exit(0);
+		}
+		
 		
 		pacman.setxAxis(pacman.getxAxis()+xSpeed);
 		pacman.setyAxis(pacman.getyAxis()+ySpeed);

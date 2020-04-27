@@ -112,8 +112,8 @@ public class Board {
 		}
 		
 		Collections.reverse(shortestPath);
-		System.out.println(shortestPath.toString());
-		System.out.println("Distance: " + (shortestPath.size()-1));
+		/*System.out.println(shortestPath.toString());
+		System.out.println("Distance: " + (shortestPath.size()-1));*/
 		
 		return shortestPath;	
 	}
@@ -279,6 +279,20 @@ public class Board {
 		linkSquares(9, 7, 's');
 		linkSquares(9, 9, 's');
 	
+	}
+	
+	public boolean dotsRemain() 
+	{
+		boolean hasDots = false;
+		for (int i = 0; i < tiles.length; i++)
+		{
+			for (int j = 0; j < tiles[i].length; j++)
+			{
+				if (tiles[i][j].hasDot)
+					hasDots = true;
+			}
+		}
+		return hasDots;
 	}
 	
 	public String toString()
