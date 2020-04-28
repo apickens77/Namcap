@@ -13,7 +13,7 @@ public class Level extends JPanel implements KeyListener, ActionListener
 	private ImageIcon bg = new ImageIcon("C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\map grid.png");
 	private ImageIcon dot = new ImageIcon("C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\dot.gif");
 	private Player player = new Player(400, 440, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\ghost.png");
-	private PacMove pacman = new PacMove(3, 200, 200, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\pacman.gif", true);
+	private PacMove pacman = new PacMove(3, 200, 200, "C:\\Users\\Adam Pickens\\git\\Namcap\\Namcap\\src\\images\\pacman.png", true);
 	private int speed = 2;
 	private int playerSpeed = 1;
 	private int xSpeed = speed;
